@@ -104,7 +104,7 @@ const LoginScreen = ({navigation}) => {
                         }]))
                 }
 
-                navigation.navigate('BottomNav');
+                navigation.replace('HomeScreen');
                 await AsyncStorage.setItem("userData", JSON.stringify(user));
             } else {
                 Alert.alert("Error", "Invalid email or password");

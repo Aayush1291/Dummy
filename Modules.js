@@ -81,7 +81,7 @@ const studentmodule = [
     },
     {
         id: 4,
-        title: 'Stationary Supply Hub',
+        title:'Test Scores'
     },
     {
         id: 5,
@@ -119,7 +119,6 @@ const parentmodule = [
     },
     {
         id: 3,
-        title: 'Stationary Supply Hub',
     },
     {
         id: 4,
@@ -189,7 +188,7 @@ const Adminmodule = [
     },
     {
         id:7,
-        title:'Enquiry Management'
+        title:'Enquiry'
     },
     {
         id:8,
