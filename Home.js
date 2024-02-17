@@ -49,10 +49,10 @@ const Home = ({ navigation }) => {
             switch (item.title) {
                 case 'Attendance':
                     if (user.loginType === 'teacher') {
-                        navigation.navigate('Attendance');
-                    } else if (user.loginType === 'student') {
+                        navigation.navigate('AttendanceNew');
+                    } {/*else if (user.loginType === 'student') {
                         navigation.navigate('StudentAttendance');
-                    }
+                    }*/}
                     break;
                 case 'Events Update':
                     navigation.navigate('EventUpdate');

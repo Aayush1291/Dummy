@@ -7,8 +7,6 @@ import AddEvent from './EventUpdate/AddEvent';
 import CompletedEvent from './EventUpdate/CompletedEvent';
 import AboutUs from './aboutus/AboutUs';
 import Facultyload from './facultyload/Facultyload';
-import Attendance from './attendance/Attendance';
-import DailyAttendance from './attendance/DailyAttendance';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -36,8 +34,6 @@ import Blog from './blog';
 import { useAppSelector } from './store/hooks';
 import Exam from './examSchedule';
 import Counselling from './counselling/Counselling';
-import ViewAttendance from './attendance/ViewAttendance';
-import StudentAttendance from './attendance/StudentAttendance';
 import WelcomeUser from './WelcomeUser';
 import Contact from './campusContact';
 import AddContact from './campusContact/addContact';
@@ -46,6 +42,7 @@ import Test from './Test';
 import TestTeacher from './TestTeacher';
 import TestParent from './TestParent';
 import Notessharing from './Notes Dashboard';
+import AttendanceNew from './attendance/AttendanceNew';
 const stack = createNativeStackNavigator();
 const tab = createBottomTabNavigator();
 
@@ -169,8 +166,8 @@ const App = () => {
             })}
           />
           <stack.Screen
-            name="Attendance"
-            component={Attendance}
+            name="AttendanceNew"
+            component={AttendanceNew}
             options={({ navigation }) => ({
               headerShown: true,
               header: () => (
@@ -178,29 +175,7 @@ const App = () => {
               ),
             })}
           />
-          <stack.Screen
-            name="DailyAttendance"
-            component={DailyAttendance}
-            options={({ navigation }) => ({
-              headerShown: true,
-              header: () => (
-                <CustomHeader
-                  navigation={navigation}
-                  title="Daily Attendance"
-                />
-              ),
-            })}
-          />
-          <stack.Screen
-            name="ViewAttendance"
-            component={ViewAttendance}
-            options={({ navigation }) => ({
-              headerShown: true,
-              header: () => (
-                <CustomHeader navigation={navigation} title="View Attendance" />
-              ),
-            })}
-          />
+
           <stack.Screen
             name="EventUpdate"
             component={EventUpdate}
@@ -387,16 +362,6 @@ const App = () => {
               headerShown: true,
               header: () => (
                 <CustomHeader navigation={navigation} title="Counselling" />
-              ),
-            })}
-          />
-          <stack.Screen
-            name="StudentAttendance"
-            component={StudentAttendance}
-            options={({ navigation }) => ({
-              headerShown: true,
-              header: () => (
-                <CustomHeader navigation={navigation} title="View Attendance" />
               ),
             })}
           />
