@@ -17,6 +17,7 @@ const CustomHeader = ({ title, navigation }) => {
     const [bookingvisible, setBookingvisible] = useState(false);
     const user = useAppSelector(state => state.profile.data);
     useEffect(() => {
+        checkTeacherUser();
         checkvisibility();
         checkParentchatvisibility();
         checkUser();
@@ -42,6 +43,12 @@ const CustomHeader = ({ title, navigation }) => {
             setIsVisible(true);
         } else {
             setIsVisible(false);
+        }
+    };
+    const checkTeacherUser = () => {
+        if (user.loginType === 'teacher') {
+            setChatparentvisible(true); 
+            setChatvisible(true);
         }
     };
 
