@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     contentContainer: {
-        height: windowheight + 400,
+        height: windowheight + responsiveHeight(88),
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'baseline',

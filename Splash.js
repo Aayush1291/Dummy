@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { View, Text, Image, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { useAppDispatch } from './store/hooks';;
-import { setModules,setUserProfile } from './store/slice/profileSlice';;
+import { useAppDispatch } from './store/hooks';
+import { setModules,setUserProfile } from './store/slice/profileSlice';
 import styles from './splash.style';
 import { parentmodule, guestmodule, studentmodule, teachermodule, TPOmodule, Adminmodule } from './Modules';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import { white } from './utils/color';
+import { black, white } from './utils/color';
 const Splash = () => {
 
     const dispatch = useAppDispatch();
@@ -24,9 +24,11 @@ const Splash = () => {
             const user = JSON.parse(userData);
             dispatch(setUserProfile(user));
 
-
-            if(userData!=null) {
-                if (user.loginType == 'Student') {
+            if (userData == null) {
+                navigation.replace('Login')
+            }
+             {
+                if (user.loginType == 'student') {
                     dispatch(setModules([
                         {
                             id: '1',
@@ -40,7 +42,7 @@ const Splash = () => {
                         }
                     ]));
                 }
-                else if (user.loginType == 'Teacher') {
+                else if (user.loginType == 'teacher') {
                     dispatch(setModules([
                         {
                             id: '1',
@@ -54,7 +56,7 @@ const Splash = () => {
                         }
                     ]));
                 }
-                else if (user.loginType == 'Parent') {
+                else if (user.loginType == 'parent') {
                     dispatch(setModules([
                         {
                             id: '1',
@@ -77,7 +79,7 @@ const Splash = () => {
                         },
                     ]));
                 }
-                else if (user.loginType == 'Admin') {
+                else if (user.loginType == 'admin') {
                     dispatch(setModules([
                         {
                             id: '1',

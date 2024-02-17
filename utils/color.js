@@ -1,5 +1,5 @@
 const shadowcolor = 'rgb(145, 41, 40)'
-const maroon = 'blue'
+const maroon = 'rgb(145, 41, 40)'
 const desctext = '#495057'
 const white = '#FFF';
 const titletext = 'rgb(145, 41, 40)'
@@ -14,7 +14,7 @@ const lightblue = 'rgb(88,240,245)'
 const lightgreen = 'rgb(0, 205, 149)'
 const highlightgreen = 'rgb(30, 234, 64 )'
 const yellow = '#faeb16'
-const lightMaroon = 'blue'
+const lightMaroon = '#A82C2C'
 
 
 export { shadowcolor, desctext, white, titletext, black, blue, green, red, lightgray, maroon, gray, cyan, lightblue, lightgreen, highlightgreen, yellow, lightMaroon };

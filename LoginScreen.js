@@ -106,6 +106,7 @@ const LoginScreen = ({navigation}) => {
 
                 navigation.replace('HomeScreen');
                 await AsyncStorage.setItem("userData", JSON.stringify(user));
+                console.log(user.rno);
             } else {
                 Alert.alert("Error", "Invalid email or password");
             }

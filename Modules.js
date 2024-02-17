@@ -63,6 +63,14 @@ const teachermodule = [
     {
         id: 8,
         title: "Assignment Dashboard",
+    },
+    {
+        id: 9,
+        title: 'Test Scores',
+    },
+    {
+        id:10,
+        title:'Notes Dashboard',
     }
 ]
 
@@ -107,6 +115,11 @@ const studentmodule = [
         id: 12,
         title: 'Assignment Dashboard',
     },
+    {
+        id:13,
+        title:'Notes Dashboard',
+    }
+
 ]
 const parentmodule = [
     {
@@ -124,6 +137,11 @@ const parentmodule = [
         id: 4,
         title: 'Placement',
     },
+    {
+        id: 5,
+        title:'Test Scores'
+    },
+    
 ]
 
 const TPOmodule = [

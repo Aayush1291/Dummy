@@ -42,7 +42,10 @@ import WelcomeUser from './WelcomeUser';
 import Contact from './campusContact';
 import AddContact from './campusContact/addContact';
 import AssignmentDashboard from './assignmentDashboard';
-
+import Test from './Test';
+import TestTeacher from './TestTeacher';
+import TestParent from './TestParent';
+import Notessharing from './Notes Dashboard';
 const stack = createNativeStackNavigator();
 const tab = createBottomTabNavigator();
 
@@ -82,9 +85,9 @@ const MyHome = () => {
           fontSize: 12,
           color: 'white',
         },
-        tabBarActiveBackgroundColor: 'red',
+        tabBarActiveBackgroundColor: 'rgb(160,80,15)',
         tabBarStyle: {
-          backgroundColor: 'blue',
+          backgroundColor: 'rgb(145,40,41)',
         },
       })}>
       <tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
@@ -115,6 +118,11 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <stack.Navigator>
+        <stack.Screen
+            name="Splash"
+            component={Splash}
+            options={{ headerShown: false }}
+          />
           <stack.Screen
             name="Login"
             component={LoginScreen}
@@ -137,6 +145,16 @@ const App = () => {
               headerShown: true,
               header: () => (
                 <CustomHeader navigation={navigation} title="Alumni" />
+              ),
+            })}
+          />
+          <stack.Screen
+            name="Test"
+            component={Test}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="Test Scores" />
               ),
             })}
           />
@@ -409,7 +427,47 @@ const App = () => {
               ),
             })}
           />
+            <stack.Screen
+            name="TestTeacher"
+            component={TestTeacher}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="Test Scores" />
+              ),
+            })}
+          />
+            <stack.Screen
+            name="TestParent"
+            component={TestParent}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="Test Scores" />
+              ),
+            })}
+          />
+          <stack.Screen
+            name="Notes Dashboard"
+            component={Notessharing}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="Notes Dashboard" />
+              ),
+            })}
+          />
         </stack.Navigator>
+        <stack.Screen
+            name="Assignment Dashboard"
+            component={AssignmentDashboard}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="Assignment Dashboard" />
+              ),
+            })}
+          />
       </NavigationContainer>
     </Provider>
   );
