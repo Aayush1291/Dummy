@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TextInput, Button, Text, Alert, TouchableOpacity, FlatList } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-// import { useAppSelector } from '../../../store/hook';
 import { useAppSelector } from '../store/hooks';
 import styles from './Chat.styles';
 
 
-const Chat = ({ navigation }) => {
+const ParentChat = ({ navigation }) => {
     const [messages, setMessages] = useState([]);
     const [text, setText] = useState('');
     const user1 = useAppSelector(state => state.profile.data);
-
     const u1 = user1.email;
     const uname = user1.name;
 
@@ -18,8 +16,27 @@ const Chat = ({ navigation }) => {
         groupChat();
     }, []);
 
+    
+    useEffect(() => {
+        fetchclass();
+    }, []);
+
+    const fetchclass = async () => {
+        try {
+            const studentQuery = await firestore()
+                .collection('Users')
+                .where('email', '==', user1.ward)
+                .get();
+            const student = studentQuery.docs[0].data().class;
+            setClass(student);
+            console.log("He bagh class==>",student)
+        } catch (error) {
+            console.error('Error retrieving student data:', error);
+        }
+    };
+
     const groupChat = async () => {
-        const collectionRef = firestore().collection(user1.class);
+        const collectionRef = firestore().collection(`Parent${user1.class}`);
         const querySnapshot = await collectionRef.orderBy('createdAt', 'asc').get();
         const fetchedMessages = querySnapshot.docs.map((doc) => doc.data());
         setMessages(fetchedMessages);
@@ -55,7 +72,6 @@ const Chat = ({ navigation }) => {
         const messageTextStyle = isUser ? styles.userMessageText : styles.otherMessageText;
         const messageTimestampStyle = isUser ? styles.userMessageTimestamp : styles.otherMessageTimestamp;
         const messageNameStyle = isUser ? styles.usernameText : styles.othernameText
-        // const formattedTime = ${item.createdAt.getHours()}:${item.createdAt.getMinutes()}
 
         return (
             <View style={[styles.messageContainer, messageContainerStyle]}>
@@ -69,7 +85,7 @@ const Chat = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Student Teacher Association(STA)</Text>
+                <Text style={styles.headerText}>Parent Teacher Association(PTA)</Text>
             </View>
             <Text style={styles.date}>{new Date().toLocaleDateString()}</Text>
             <FlatList
@@ -92,4 +108,4 @@ const Chat = ({ navigation }) => {
         </View>
     );
 };
-export default Chat;
+export default ParentChat;

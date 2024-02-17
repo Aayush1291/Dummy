@@ -13,19 +13,26 @@ import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimen
 const CustomHeader = ({ title, navigation }) => {
     const [isVisible, setIsVisible] = useState(false)
     const [chatvisible, setChatvisible] = useState(false)
+    const [chatparentvisible, setChatparentvisible] = useState(false)
     const [bookingvisible, setBookingvisible] = useState(false);
     const user = useAppSelector(state => state.profile.data);
     useEffect(() => {
         checkvisibility();
+        checkParentchatvisibility();
         checkUser();
         checkadmin();
 
     }, [user]);
 
     const checkvisibility = () => {
-        if (user.loginType === 'parent' || user.loginType === 'teacher') {
+        if (user.loginType === 'student') {
             setChatvisible(true);
-        } else {
+            setChatparentvisible(false)
+        }
+    }
+    const checkParentchatvisibility = () => {
+        if (user.loginType === 'parent') {
+            setChatparentvisible(true)
             setChatvisible(false);
         }
     }
@@ -58,6 +65,16 @@ const CustomHeader = ({ title, navigation }) => {
                     <Image source={require('../../assets/imgs/ves_logo_name.png')} style={{ height: responsiveHeight(4), width: responsiveWidth(40) }} />
                     <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={styles.chaticon}>
                         {chatvisible ? (
+
+                            <Icon name="chat" size={26} color='rgb(145, 41, 40)' />
+                        ) :
+                            (
+                                null
+                            )
+                        }
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={styles.chaticon}>
+                        {chatparentvisible ? (
 
                             <Icon name="chat" size={26} color='rgb(145, 41, 40)' />
                         ) :

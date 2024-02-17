@@ -14,7 +14,7 @@ const Facultyload = () => {
       try {
         const querySnapshot = await firestore()
           .collection('FacltyLoad')
-          .where('teacherName', '==', user.firstName)
+          .where('teacherName', '==', user.name)
           .get();
 
         const data = [];
@@ -77,11 +77,10 @@ const Facultyload = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.teacherName}>
-        Teacher Name: {user.firstName} {user.lastName}
+        Teacher Name: {user.name}
       </Text>
 
       <Text style={styles.heading}>Timetable:</Text>
-
       {renderFacultyload()}
     </View>
   );

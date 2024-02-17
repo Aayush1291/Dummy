@@ -19,7 +19,7 @@ import Enquiry from './enquirymanagement/Enquirymanagement';
 import Fees from './fees/Fees';
 import Splash from './Splash';
 import Chat from './groupchat/chat';
-
+import ParentChat from './groupchat/chatParent';
 import FAQ from './FAQs/faqs';
 import Profile from './bottomTab/profile';
 import Notifications from './bottomTab/notifications';
@@ -353,6 +353,16 @@ const App = () => {
           <stack.Screen
             name="Chat"
             component={Chat}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="VES Chat" />
+              ),
+            })}
+          />
+          <stack.Screen
+            name="chatParent"
+            component={ParentChat}
             options={({ navigation }) => ({
               headerShown: true,
               header: () => (
