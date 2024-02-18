@@ -13,7 +13,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import Alumni from './alumni/Alumni';
-import Enquiry from './enquirymanagement/Enquirymanagement';
 import Fees from './fees/Fees';
 import Splash from './Splash';
 import Chat from './groupchat/chat';
@@ -232,18 +231,6 @@ const App = () => {
               ),
             })}
           />
-          <stack.Screen
-            name="Enquiry"
-            component={Enquiry}
-            options={({ navigation }) => ({
-              headerShown: true,
-              header: () => (
-                <CustomHeader
-                  navigation={navigation}
-                  title="Enquiry"
-                />
-              ),
-            })}></stack.Screen>
 
           <stack.Screen
             name="Facultyload"
