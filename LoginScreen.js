@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity,Alert } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, Alert, KeyboardAvoidingView, ImageBackground, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -8,8 +8,8 @@ import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { teachermodule, studentmodule, guestmodule, parentmodule, TPOmodule, Adminmodule } from './Modules';
 import { useAppDispatch } from './store/hooks';
-import { setUserProfile,setModules } from './store/slice/profileSlice';
-const LoginScreen = ({navigation}) => {
+import { setUserProfile, setModules } from './store/slice/profileSlice';
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -24,153 +24,180 @@ const LoginScreen = ({navigation}) => {
   };
   const handleLogin = async () => {
     if (!email || !password) {
-        Alert.alert("Error", "Fields cannot be empty");
+      Alert.alert("Error", "Fields cannot be empty");
     } else {
-        const users = firestore().collection('users');
+      const users = firestore().collection('users');
 
-        const querySnapshot = await users
-            .where('email', '==', email)
-            .limit(1)
-            .get();
+      const querySnapshot = await users
+        .where('email', '==', email)
+        .limit(1)
+        .get();
 
-        if (querySnapshot.empty) {
-            Alert.alert("Error", "User not found");
-            return;
+      if (querySnapshot.empty) {
+        Alert.alert("Error", "User not found");
+        return;
+      }
+
+      const user = querySnapshot.docs[0].data();
+      const hashedPassword = user.password;
+
+      compare(password, hashedPassword, async (error, isMatch) => {
+        if (isMatch) {
+          dispatch(setUserProfile(user));
+          if (user.loginType == 'student') {
+            dispatch(setModules([
+              {
+                id: '1',
+                title: 'Student Components',
+                data: [...studentmodule]
+              },
+              {
+                id: '2',
+                title: 'Basic Components',
+                data: [...guestmodule]
+              }
+            ]));
+          }
+          else if (user.loginType == 'teacher') {
+            dispatch(setModules([
+              {
+                id: '1',
+                title: 'Teacher Components',
+                data: [...teachermodule]
+              },
+              {
+                id: '2',
+                title: 'Basic Components',
+                data: [...guestmodule]
+              }
+            ]));
+          }
+          else if (user.loginType == 'parent') {
+            dispatch(setModules([
+              {
+                id: '1',
+                title: 'Parent Components',
+                data: [...parentmodule]
+              },
+              {
+                id: '2',
+                title: 'Basic Components',
+                data: [...guestmodule]
+              }
+            ]));
+          }
+          else if (user.loginType == 'TPO') {
+            dispatch(setModules([
+              {
+                id: '1',
+                title: 'TPO Components',
+                data: [...TPOmodule]
+              },
+            ]));
+          }
+          else if (user.loginType == 'admin') {
+            dispatch(setModules([
+              {
+                id: '1',
+                title: 'Admin Components',
+                data: [...Adminmodule]
+              }]))
+          }
+
+          navigation.replace('HomeScreen');
+          await AsyncStorage.setItem("userData", JSON.stringify(user));
+          console.log(user.rno);
+        } else {
+          Alert.alert("Error", "Invalid email or password");
         }
-
-        const user = querySnapshot.docs[0].data();
-        const hashedPassword = user.password;
-
-        compare(password, hashedPassword, async (error, isMatch) => {
-            if (isMatch) {
-                dispatch(setUserProfile(user));
-                if (user.loginType == 'student') {
-                    dispatch(setModules([
-                        {
-                            id: '1',
-                            title: 'Student Components',
-                            data: [...studentmodule]
-                        },
-                        {
-                            id: '2',
-                            title: 'Basic Components',
-                            data: [...guestmodule]
-                        }
-                    ]));
-                }
-                else if (user.loginType == 'teacher') {
-                    dispatch(setModules([
-                        {
-                            id: '1',
-                            title: 'Teacher Components',
-                            data: [...teachermodule]
-                        },
-                        {
-                            id: '2',
-                            title: 'Basic Components',
-                            data: [...guestmodule]
-                        }
-                    ]));
-                }
-                else if (user.loginType == 'parent') {
-                    dispatch(setModules([
-                        {
-                            id: '1',
-                            title: 'Parent Components',
-                            data: [...parentmodule]
-                        },
-                        {
-                            id: '2',
-                            title: 'Basic Components',
-                            data: [...guestmodule]
-                        }
-                    ]));
-                }
-                else if (user.loginType == 'TPO') {
-                    dispatch(setModules([
-                        {
-                            id: '1',
-                            title: 'TPO Components',
-                            data: [...TPOmodule]
-                        },
-                    ]));    
-                }
-                else if (user.loginType == 'admin') {
-                    dispatch(setModules([
-                        {
-                            id: '1',
-                            title: 'Admin Components',
-                            data: [...Adminmodule]
-                        }]))
-                }
-
-                navigation.replace('HomeScreen');
-                await AsyncStorage.setItem("userData", JSON.stringify(user));
-                console.log(user.rno);
-            } else {
-                Alert.alert("Error", "Invalid email or password");
-            }
-        });
+      });
     }
-};
+  };
 
 
   return (
-    <View style={styles.container}>
-      <View style={{marginTop:responsiveHeight(40)}}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          mode='outlined'
-          cursorColor='#2585DB'
-          outlineStyle={{ borderWidth: 1, borderColor: '#2585DB', borderRadius: 10 }}
-          style={styles.input}
-          onChangeText={handleEmailChange}
-          value={email}
-          theme={{ colors: { primary: '#2585DB' } }}
-          label={
-            <Text style={{ color: '#2585DB', backgroundColor: 'white' }}>
-              Email
-            </Text>
-          }
-        />
+    <ScrollView style={styles.container}>
+      <View style={{
+        height: responsiveHeight(50),
+        width: responsiveWidth(100)
+      }}>
+        <ImageBackground
+          source={require('./assets/imgs/ves_logo.png')}
+          style={{
+            width: responsiveWidth(100),
+            height: responsiveHeight(50),
+            justifyContent: 'center'
+          }}
+        >
+        </ImageBackground>
       </View>
       <View style={{
-        flexDirection: 'row',
-        position: 'relative', // Ensure the container is positioned relatively
+        backgroundColor: '#A82C2C',
+        height: responsiveHeight(6),
+        width: responsiveWidth(100),
+        justifyContent: 'center'
       }}>
-        <TextInput
-          mode='outlined'
-          cursorColor='#2585DB'
-          outlineStyle={{ borderWidth: 1, borderColor: '#2585DB', borderRadius: 10 }}
-          style={[styles.input, position='relative']} // Add zIndex to make sure TextInput is rendered above
-          onChangeText={handlePasswordChange}
-          value={password}
-          secureTextEntry={!showPassword} // Toggle secureTextEntry based on showPassword state
-          theme={{ colors: { primary: '#2585DB' } }}
-          label={
-            <Text style={{ color: '#2585DB', backgroundColor: 'white' }}>
-              Password
-            </Text>
-          }
-        />
-        <TouchableOpacity
-          style={{ position: 'absolute', right: responsiveWidth(5), marginRight: responsiveWidth(5), marginTop: responsiveHeight(4.5)}} // Position absolutely and give higher zIndex
-          onPress={() => setShowPassword(!showPassword)}
-        >
-          <Octicons
-            name={showPassword ? 'eye' : 'eye-closed'}
-            style={{ color: '#2585DB' }}
-            size={24}
+        <Text style={{
+          color: 'white',
+          fontSize: 22,
+          fontWeight: '900',
+          alignSelf: 'center'
+        }}>WELCOME TO VES APP</Text>
+      </View>
+      <View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            mode='outlined'
+            cursorColor='black'
+            outlineStyle={{ borderWidth: 1, borderColor: 'black', borderRadius: 10 }}
+            style={styles.input}
+            onChangeText={handleEmailChange}
+            value={email}
+            theme={{ colors: { primary: 'black' } }}
+            label={
+              <Text style={{ color: 'black', backgroundColor: 'white' }}>
+                Email
+              </Text>
+            }
           />
+        </View>
+        <View style={{
+          flexDirection: 'row',
+          position: 'relative', // Ensure the container is positioned relatively
+        }}>
+          <TextInput
+            mode='outlined'
+            cursorColor='black'
+            outlineStyle={{ borderWidth: 1, borderColor: 'black', borderRadius: 10 }}
+            style={[styles.input, position = 'relative']} // Add zIndex to make sure TextInput is rendered above
+            onChangeText={handlePasswordChange}
+            value={password}
+            secureTextEntry={!showPassword} // Toggle secureTextEntry based on showPassword state
+            theme={{ colors: { primary: 'black' } }}
+            label={
+              <Text style={{ color: 'black', backgroundColor: 'white' }}>
+                Password
+              </Text>
+            }
+          />
+          <TouchableOpacity
+            style={{ position: 'absolute', right: responsiveWidth(5), marginRight: responsiveWidth(5), marginTop: responsiveHeight(4.5) }} // Position absolutely and give higher zIndex
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <Octicons
+              name={showPassword ? 'eye' : 'eye-closed'}
+              style={{ color: 'black' }}
+              size={24}
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={styles.submitButton}
+          onPress={handleLogin}
+        >
+          <Text style={styles.submitButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.submitButton}
-      onPress={handleLogin}
-      >
-        <Text style={styles.submitButtonText}>Login</Text>
-      </TouchableOpacity>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -190,7 +217,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90)
   },
   submitButton: {
-    backgroundColor: '#2b72a9',
+    backgroundColor: '#A82C2C',
     alignItems: 'center',
     justifyContent: 'center',
     height: 50,
@@ -200,7 +227,7 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     color: 'white',
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(3),
     fontFamily: 'Poppins-Regular',
   },
 });

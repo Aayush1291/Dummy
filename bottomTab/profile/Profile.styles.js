@@ -10,9 +10,9 @@ const styles = StyleSheet.create({
     anotherCard: {
         alignItems: 'center',
         backgroundColor: COLORS.white,
-        marginTop: 10,
+        marginTop: 1,
         width: responsiveWidth(90),
-        padding: 5,
+        padding: 1,
         borderRadius: 10
     },
     icon: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: COLORS.white,
         borderRadius: 10,
-        padding: 16,
+        padding: 10,
         marginTop: 16,
         width: responsiveWidth(90),
         height: responsiveHeight(35)

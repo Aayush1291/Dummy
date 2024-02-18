@@ -4,10 +4,6 @@ const guestmodule = [
         title: 'Alumni and Mentorship',
     },
     {
-        id: 2,
-        title: 'Enquiry Management',
-    },
-    {
         id: 3,
         title: 'Photo Gallery',
     },
@@ -18,10 +14,6 @@ const guestmodule = [
     {
         id: 5,
         title: 'FAQs',
-    },
-    {
-        id: 6,
-        title: 'Blog',
     },
     //{
       //  id:7,
@@ -42,10 +34,6 @@ const teachermodule = [
     {
         id: 3,
         title: 'Holiday Calender',
-    },
-    {
-        id: 4,
-        title: 'Exam Schedule',
     },
     {
         id: 5,
@@ -102,10 +90,6 @@ const studentmodule = [
         title: 'Placement',
     },
     {
-        id: 6,
-        title: 'Exam Schedule',
-    },
-    {
         id: 7,
         title: 'Counselling',
     },
@@ -126,10 +110,6 @@ const studentmodule = [
         title:'Notes Dashboard',
     },
     {
-        id: 6,
-        title:'Attendence View'
-    },
-    {
 
         id: 11,
         title: 'Student-Teacher Chat',
@@ -137,24 +117,13 @@ const studentmodule = [
 
 ]
 const parentmodule = [
-    {
-        id: 2,
-        title: 'Fees',
-    },
-    {
-        id: 3,
-    },
-    {
-        id: 4,
-        title: 'Placement',
-    },
+    // {
+    //     id: 2,
+    //     title: 'Fees',
+    // },
     {
         id: 5,
         title:'Test Scores'
-    },
-    {
-        id: 6,
-        title:'Attendence View'
     },
     {
 
@@ -236,14 +205,7 @@ const Adminmodule = [
         id:9,
         title:'FAQs'
     },
-    {
-        id:10,
-        title:'Blog'
-    },
-    {
-        id:11,
-        title:'Enquiry Management'
-    },
+
     {
         id:12,
         title:'Holiday Calendar'

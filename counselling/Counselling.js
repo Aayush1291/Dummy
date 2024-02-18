@@ -206,7 +206,18 @@ const Counselling = () => {
                     )}
                 </View>
             </TouchableOpacity>
-          
+          {/* <View style={{height:50,marginLeft:17,marginTop:15,backgroundColor:'maroon',width:300}} >
+            <Text
+            style={{fontFamily:'Poppins-Regular', fontWeight: 'bold', fontSize: 17,color:'black',color:'white'}}> VESPAA Counsellor: </Text>
+           <Text
+            style={{fontFamily:'Poppins-Regular', fontWeight: 'bold', fontSize: 16,color:'black',color:'white'}}>sakshi.kaulgude@ves.ac.in </Text>
+          </View> */}
+          <View  style={{height:60,marginLeft:17,marginTop:15,backgroundColor:'maroon',width:300}} >
+            <Text
+            style={{marginTop: 5,fontFamily:'Poppins-Regular', fontSize: 17, fontWeight: 'bold',color:'black',color:'white'}}> VESP Counsellor: </Text>
+            <Text
+            style={{marginLeft:5,marginTop: 5,fontFamily:'Poppins-Regular', fontWeight: 'bold',fontSize: 16,color:'black',color:'white'}}>sakshi.kaulgude@ves.ac.in </Text>
+          </View>
         </ScrollView>
     );
 

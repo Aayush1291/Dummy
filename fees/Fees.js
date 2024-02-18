@@ -18,7 +18,7 @@ const Fees = () => {
     const showFee = async () => {
         try {
             const parentQuery = await firestore()
-                .collection('Users')
+                .collection('users')
                 .where('email', '==', email)
                 .get();
             const parent = parentQuery.docs[0].data().child;

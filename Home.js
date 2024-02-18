@@ -180,7 +180,7 @@ const Home = ({ navigation }) => {
                     style={{
                         borderWidth: 1,
                         borderColor: white,
-                        height: responsiveHeight(23),
+                        height: responsiveHeight(23.35),
                         borderRadius: 20,
                         margin: 5,
                     }}>

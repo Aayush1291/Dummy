@@ -28,23 +28,15 @@ const Notifications = () => {
     }
 
     const renderCard = ({ item }) => {
-        const date = item.date.toDate()
-        const formatted = date.toLocaleDateString()
+        const date = item.date
+        const formatted = date
         return (
             // <ScrollView style={styles.main}>
             <View style={styles.container}>
                 <View style={styles.card}>
                     <Text style={styles.heading}>{item.title} </Text>
                     <Text style={styles.desc}>{item.desc} </Text>
-                    {
-                        item.link ?
-                            <TouchableOpacity
-                                onPress={() => Linking.openURL(item.link)}
-                            >
-                                <Text style={styles.link}>{item.link} </Text>
-                            </TouchableOpacity>
-                            : null
-                    }
+
                     <Text style={styles.date}>{formatted}</Text>
                 </View>
             </View>
