@@ -30,7 +30,7 @@ const Detail = ({ route }) => {
     }, []);
     const renderItems = ({ item }) => {
         const date=item.Eventdate.toDate()
-        const formatted = date.toLocaleDateString()
+        const formatted = date
         return (
             <View>
                 <View style={Style.renderView}>

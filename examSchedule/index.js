@@ -165,7 +165,7 @@ const Exam = () => {
                 <Text style={styles.cardInfo}>Uploaded by: {item.uploadedBy}</Text>
                 <Text style={styles.cardInfo}>Uploaded on: {item.uploadedOn.toDate().toLocaleDateString()}</Text>
                 {
-                    user.loginType == 'Teacher' ? <Text style={styles.cardInfo}>Institute: {item.institute}</Text> : null
+                    user.loginType == 'teacher' ? <Text style={styles.cardInfo}>Institute: {item.institute}</Text> : null
                 }
 
             </View>
@@ -181,7 +181,7 @@ const Exam = () => {
             />
 
             {
-                user.loginType == 'Teacher' ?
+                user.loginType == 'teacher' ?
                     <View style={styles.button}>
                         <TouchableOpacity onPress={() => setVisibleModal(true)} style={styles.addButtonMain}>
                             <Text style={styles.addButtonLabel}>Add Document</Text>

@@ -99,6 +99,15 @@ const Home = ({ navigation }) => {
                 case 'Campus Contact':
                     navigation.navigate('Campus Contact');
                     break;
+                    case 'Placement':
+                        navigation.navigate('Placement');
+                        break;
+                        case 'Student-Teacher Chat':
+                            navigation.navigate('Chat');
+                            break;
+                            case 'Teacher-Parent Chat':
+                                navigation.navigate('chatParent');
+                                break;
                     case 'Notes Dashboard':
           navigation.navigate('Notes Dashboard')
           break;

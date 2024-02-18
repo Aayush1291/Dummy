@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     contentContainer: {
-        height: windowheight + responsiveHeight(88),
+        height: windowheight + responsiveHeight(40),
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'baseline',
-        flexWrap: 'wrap'
-
+        flexWrap: 'wrap',
+        borderRadius: 10
     },
     heading: {
         flexDirection: 'row',
@@ -44,18 +44,19 @@ const styles = StyleSheet.create({
 
     card1: {
         width: windowWidth / 2 - 20,
-        height: 100,
+        height: 50,
         backgroundColor: white,
         alignItems: 'center',
         justifyContent: 'center',
         margin: 10,
         shadowColor: shadowcolor,
         backgroundColor: white,
-        elevation: 10,
+        elevation: 15,
+        borderRadius:15
     },
 
     title: {
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         color: maroon,
     },

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     addButtonMain: {
-        backgroundColor: COLORS.blue,
+        backgroundColor: COLORS.maroon,
         borderRadius: 5,
         padding: 10,
         alignItems: 'center',

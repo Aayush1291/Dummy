@@ -24,7 +24,7 @@ const EventUpdate = ({ navigation }) => {
     }
 
     const checkUser = () => {
-        if (user.loginType == 'Teacher') {
+        if (user.loginType == 'teacher') {
             setIsVisible(true)
         }
     }
@@ -32,7 +32,7 @@ const EventUpdate = ({ navigation }) => {
         const firestoreTimestamp = item.Eventdate;
         const firestoreDate = firestoreTimestamp && firestoreTimestamp.toDate ? firestoreTimestamp.toDate() : null;
         const currentDate = new Date();
-        const formatted = firestoreDate.toLocaleDateString()
+        const formatted = firestoreDate
         if (firestoreDate && firestoreDate.getTime() > currentDate.getTime()||item.Eventdate>currentDate.getTime()) {
             return (
                 <View>

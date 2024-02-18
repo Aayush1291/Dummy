@@ -13,12 +13,12 @@ const ImageGrid = () => {
     const [imageArrays, setImageArrays] = useState([]);
     const [likes, setLikes] = useState({});
     const [isLiked, setIsLiked] = useState(false);
-    const [selectedItem, setSelectedItem] = useState('Architecture College');
+    const [selectedItem, setSelectedItem] = useState('Play Group');
     const user = useAppSelector((state) => state.profile.data);
 
     const fetchImageArrays = async (selectedItem) => {
         try {
-            const snapshot = await firestore().collection('Photos').where('imageTitle', '==', selectedItem).get();
+            const snapshot = await firestore().collection('Photos').get();
             const fetchedDocuments = snapshot.docs.map((doc) => ({
                 docId: doc.id,
                 ...doc.data(),

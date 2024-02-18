@@ -21,7 +21,7 @@ const CompletedEvent = ({navigation}) => {
         const firestoreTimestamp = item.Eventdate;
         const firestoreDate = firestoreTimestamp && firestoreTimestamp.toDate ? firestoreTimestamp.toDate() : null;
         const currentDate = new Date();
-        const formatted = firestoreDate.toLocaleDateString()
+        const formatted = firestoreDate
         if (firestoreDate && firestoreDate.getTime() < currentDate.getTime() || item.Eventdate > currentDate.getTime()) {
             console.log('Rendering item:', item);
             return (

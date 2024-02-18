@@ -47,7 +47,7 @@ const CustomHeader = ({ title, navigation }) => {
     };
     const checkTeacherUser = () => {
         if (user.loginType === 'teacher') {
-            setChatparentvisible(true); 
+            setChatparentvisible(true);
             setChatvisible(true);
         }
     };
@@ -70,26 +70,7 @@ const CustomHeader = ({ title, navigation }) => {
                 >
 
                     <Image source={require('../../assets/imgs/ves_logo_name.png')} style={{ height: responsiveHeight(4), width: responsiveWidth(40) }} />
-                    <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={styles.chaticon}>
-                        {chatvisible ? (
 
-                            <Icon name="chat" size={26} color='rgb(145, 41, 40)' />
-                        ) :
-                            (
-                                null
-                            )
-                        }
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={styles.chaticon}>
-                        {chatparentvisible ? (
-
-                            <Icon name="chat" size={26} color='rgb(145, 41, 40)' />
-                        ) :
-                            (
-                                null
-                            )
-                        }
-                    </TouchableOpacity>
                     <TouchableOpacity onPress={async () => {
                         navigation.navigate('Login');
                         await AsyncStorage.removeItem("userData");

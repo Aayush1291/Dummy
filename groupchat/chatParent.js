@@ -7,8 +7,9 @@ import styles from './Chat.styles';
 
 const ParentChat = ({ navigation }) => {
     const [messages, setMessages] = useState([]);
+    const [class1,setClass1]=useState('');
     const [text, setText] = useState('');
-    const user1 = useAppSelector(state => state.profile.data);
+    const user1=useAppSelector(state => state.profile.data);
     const u1 = user1.email;
     const uname = user1.name;
 
@@ -22,21 +23,35 @@ const ParentChat = ({ navigation }) => {
     }, []);
 
     const fetchclass = async () => {
-        try {
-            const studentQuery = await firestore()
-                .collection('Users')
-                .where('email', '==', user1.ward)
-                .get();
-            const student = studentQuery.docs[0].data().class;
-            setClass(student);
-            console.log("He bagh class==>",student)
-        } catch (error) {
-            console.error('Error retrieving student data:', error);
-        }
+if(user1.loginType==='parent')
+{
+    try {
+        console.log("Ward==>",user1.ward)
+        const studentQuery = await firestore()
+            .collection('users')
+            .where('email', '==', user1.ward)
+            .get();
+            console.log("Query=>",studentQuery.docs[0])
+        const student = studentQuery.docs[0].data().class;
+        setClass1(student);
+        console.log("He bagh class==>",student)
+    } catch (error) {
+        console.error('Error retrieving student data:', error);
+    }
+}
+else{
+    const col='parent'+user1.class;
+    const collectionRef = firestore().collection(col);
+    const querySnapshot = await collectionRef.orderBy('createdAt', 'asc').get();
+    const fetchedMessages = querySnapshot.docs.map((doc) => doc.data());
+    setMessages(fetchedMessages);
+}
     };
 
     const groupChat = async () => {
-        const collectionRef = firestore().collection(`Parent${user1.class}`);
+        const col='parent'+user1.class;
+        console.log("Collect==>",col);
+        const collectionRef = firestore().collection(col);
         const querySnapshot = await collectionRef.orderBy('createdAt', 'asc').get();
         const fetchedMessages = querySnapshot.docs.map((doc) => doc.data());
         setMessages(fetchedMessages);
@@ -53,7 +68,8 @@ const ParentChat = ({ navigation }) => {
         }
 
         try {
-            await firestore().collection(user1.class).add({
+            const col='parent'+user1.class;
+            await firestore().collection(col).add({
                 name: name,
                 email: user,
                 text: message,

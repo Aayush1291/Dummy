@@ -38,7 +38,7 @@ const Style = StyleSheet.create({
         margin: 10
     },
     button: {
-        backgroundColor: white,
+        backgroundColor: titletext,
         elevation: elevationsize,
         shadowColor: shadowcolor,
         alignSelf: 'center'
@@ -46,11 +46,11 @@ const Style = StyleSheet.create({
     text: {
         fontSize: 30,
         alignSelf: 'center',
-        color: titletext,
+        color: white,
         padding: 5
     },
     textInput: {
-        borderWidth: 5,
+        borderWidth: 1,
         margin: 10,
         borderRadius: 10,
         padding: 10

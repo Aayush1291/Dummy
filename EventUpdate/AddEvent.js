@@ -8,8 +8,11 @@ const AddEvent = () => {
     const [Desc, setDesc] = useState('');
     const [Image, setImage] = useState('');
     const [id, setid] = useState('');
-    const [Eventdate,setEventdata]=useState()
-    const[date,setdate]=useState()
+    const [Eventdate, setEventdata] = useState(new Date().getTime()); // Set current time as default
+
+    // Or if you want to use a specific default value
+    // const [Eventdate, setEventdate] = useState(someDefaultValue);
+        const[date,setdate]=useState()
     const handleAdd = () => {
         setEventdata(new Date(date).getTime())
         const edit = {
@@ -46,9 +49,6 @@ const AddEvent = () => {
 
     return (
         <View >
-            <View style={{backgroundColor:'#A80000'}}>
-            <Text style={Style.text}>AddEvent</Text>
-            </View>
             <TextInput
                 style={Style.textInput}
                 placeholder="Enter id"

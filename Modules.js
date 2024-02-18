@@ -23,10 +23,10 @@ const guestmodule = [
         id: 6,
         title: 'Blog',
     },
-    {
-        id:7,
-        title:'Campus Contact'
-    }
+    //{
+      //  id:7,
+        //title:'Campus Contact'
+    //}
 
 ]
 
@@ -56,14 +56,14 @@ const teachermodule = [
         id: 6,
         title: 'Counselling',
     },
-    {
-        id: 7,
-        title: "Booking",
-    },
-    {
-        id: 8,
-        title: "Assignment Dashboard",
-    },
+    // {
+    //     id: 7,
+    //     title: "Booking",
+    // },
+    //{
+      //  id: 8,
+        //title: 'Assignment Dashboard',
+    //},
     {
         id: 9,
         title: 'Test Scores',
@@ -71,14 +71,20 @@ const teachermodule = [
     {
         id:10,
         title:'Notes Dashboard',
-    }
+    },
+    {
+
+        id: 11,
+        title: 'Student-Teacher Chat',
+    },
+    {
+
+        id: 12,
+        title: 'Teacher-Parent Chat',
+    },
 ]
 
 const studentmodule = [
-    {
-        id: 1,
-        title: 'Attendance',
-    },
     {
         id: 2,
         title: 'Events Update',
@@ -111,21 +117,26 @@ const studentmodule = [
         id: 9,
         title: 'Fitness And Health',
     },
-    {
-        id: 12,
-        title: 'Assignment Dashboard',
-    },
+    //{
+      //  id: 12,
+        //title: 'Assignment Dashboard',
+    //},
     {
         id:13,
         title:'Notes Dashboard',
-    }
+    },
+    {
+        id: 6,
+        title:'Attendence View'
+    },
+    {
+
+        id: 11,
+        title: 'Student-Teacher Chat',
+    },
 
 ]
 const parentmodule = [
-    {
-        id: 1,
-        title: 'Attendance',
-    },
     {
         id: 2,
         title: 'Fees',
@@ -140,6 +151,15 @@ const parentmodule = [
     {
         id: 5,
         title:'Test Scores'
+    },
+    {
+        id: 6,
+        title:'Attendence View'
+    },
+    {
+
+        id: 7,
+        title: 'Teacher-Parent Chat',
     },
     
 ]

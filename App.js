@@ -43,6 +43,10 @@ import TestTeacher from './TestTeacher';
 import TestParent from './TestParent';
 import Notessharing from './Notes Dashboard';
 import AttendanceNew from './attendance/AttendanceNew';
+import ViewAttend from './attendance/AttendenceView';
+import Placement from './placement/Placement';
+import AddJob from './placement/AddJob';
+import JobDetails from './placement/JobDetails';
 const stack = createNativeStackNavigator();
 const tab = createBottomTabNavigator();
 
@@ -175,7 +179,16 @@ const App = () => {
               ),
             })}
           />
-
+          <stack.Screen
+            name="ViewAttend"
+            component={ViewAttend}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="View Attendance" />
+              ),
+            })}
+          />
           <stack.Screen
             name="EventUpdate"
             component={EventUpdate}
@@ -429,6 +442,36 @@ const App = () => {
               headerShown: true,
               header: () => (
                 <CustomHeader navigation={navigation} title="Notes Dashboard" />
+              ),
+            })}
+          />
+          <stack.Screen
+            name="Placement"
+            component={Placement}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="Placement" />
+              ),
+            })}
+          />
+          <stack.Screen
+            name="JobDetails"
+            component={JobDetails}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="JobDetails" />
+              ),
+            })}
+          />
+          <stack.Screen
+            name="AddJob"
+            component={AddJob}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <CustomHeader navigation={navigation} title="AddJob" />
               ),
             })}
           />
