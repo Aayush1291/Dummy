@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,ScrollView } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import { useAppSelector } from './store/hooks';
 
@@ -38,13 +38,16 @@ const Test = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1 }}>
       <Text style={styles.heading}>Student Marks Tracker</Text>
+      <ScrollView horizontal>
+      <View>
       <Table borderStyle={{ borderWidth: 1, borderColor: '#C1C0B9' }}>
         <Row
           data={['Name', 'Enrollment No', 'sem','mad','jpr','css']}
           style={styles.head}
           textStyle={styles.text}
+          widthArr={[100, 120, 80, 60, 60, 60]}
         />
         {attendanceData.map((rowData, index) => (
           <Row
@@ -52,19 +55,21 @@ const Test = () => {
             data={[rowData[5], rowData[1], rowData[6],rowData[2],rowData[4],rowData[3]]}
             style={styles.row}
             textStyle={styles.text}
+            widthArr={[100, 120, 80, 60, 60, 60]}
           />
         ))}
       </Table>
+    </View>
+    </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  heading: { fontSize: 20, fontWeight: 'bold', marginBottom: 20 },
-  head: { height: 50, backgroundColor: '#f1f8ff' },
-  text: { margin: 6, fontSize:10 },
-  row: { flexDirection: 'row', backgroundColor: '#FFF1C1' }
+  heading: { fontSize: 20, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  text: { margin: 6, textAlign: 'center' },
+  row: { height: 40, flexDirection: 'row' }
 });
 
 export default Test;

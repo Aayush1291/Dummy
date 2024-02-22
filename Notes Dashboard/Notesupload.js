@@ -119,6 +119,7 @@ const NotesCreationScreen = () => {
                     onSelectItem={(item) => handleClassChange(item.value)}
                     containerStyle={styles.dropdownContainer}
                     scrollable={true}
+                    zIndex={9999.}
                 />
                 <Text style={styles.label}>Select subject:</Text>
                 <DropDownPicker

@@ -113,10 +113,10 @@ const TestParent = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  heading: { fontSize: 20, fontWeight: 'bold', marginBottom: 20 },
-  head: { height: 50, backgroundColor: '#f1f8ff' },
-  text: { margin: 6, fontSize: 10 },
-  row: { flexDirection: 'row', backgroundColor: '#FFF1C1' },
+  heading: { fontSize: 20, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  text: { margin: 6, textAlign: 'center' },
+  row: { height: 40, flexDirection: 'row' },
   loadingContainer: { justifyContent: 'center', alignItems: 'center' },
   errorContainer: { justifyContent: 'center', alignItems: 'center' },
   errorText: { fontSize: 16, color: 'red' },

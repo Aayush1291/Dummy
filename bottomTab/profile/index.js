@@ -66,7 +66,7 @@ const Profile = ({ navigation }) => {
                                 });
                             });
 
-                            const docRef = await firestore().collection('Users').where('email', '==', user.email).get();
+                            const docRef = await firestore().collection('users').where('email', '==', user.email).get();
                             docRef.forEach(async doc => {
                                 await doc.ref.update({
                                     password: newHashedPassword,
